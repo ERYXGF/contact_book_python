@@ -51,5 +51,8 @@ def display_statistics(contacts):
     else:
         print(f"There are {total_contacts} contacts in this Contact Book")
         print(f"There are {total_favourites} favourite contacts in this Contact Book")
-        print(f"")#Print the 
+        print(f"")#Print a breakdown of how many contacts are in each category
+        print(f"")#Print the most recently added contact and their date added
+        print(f"")#Print the oldest contact in the book by date added
+        print(f"")#Print the total count of contacts added this month specifically.
 
