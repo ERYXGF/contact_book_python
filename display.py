@@ -23,3 +23,19 @@ def display_menu():
             print("Invalid choice. Please enter a number (0-9).")
     return decision
 
+def display_contact(contact):
+    print(f"Name: {contact['name']}")
+    print(f"Phone: {contact['phone']}")
+    print(f"Email: {contact['email']}")
+    print(f"City: {contact['city']}")
+    print(f"Favourite: {'Yes' if contact['favourite'] else 'No'}")
+    print(f"Category: {contact['category']}")
+
+def display_all_contacts(contacts):
+    if not contacts:
+        print("There are no contacts yet.")
+    else:
+        for contact in contacts:
+            print (f"{contact['name']} - {contact['phone']} - {contact['email']} - {contact['city']} - {'Favourite' if contact['favourite'] else 'Not Favourite'} - {contact['category']}")
+
+
