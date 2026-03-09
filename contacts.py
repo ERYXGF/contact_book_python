@@ -13,3 +13,7 @@ def contact_reusage(contact):
         "favourite" : str(contact.get("favourite","")).strip(),
         #Find a way to implement date
     }
+
+#Function that adds contact:
+def add_contact(contact):
+    return contact_reusage(contact)
