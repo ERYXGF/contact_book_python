@@ -38,4 +38,18 @@ def display_all_contacts(contacts):
         for contact in contacts:
             print (f"{contact['name']} - {contact['phone']} - {contact['email']} - {contact['city']} - {'Favourite' if contact['favourite'] else 'Not Favourite'} - {contact['category']}")
 
+def display_statistics(contacts):
+    total_contacts = int(len(contacts))
+    total_favourites = 0
+    for contact in contacts:
+        if contact["favourite"]:
+            total_contacts += 1
+        total_contacts += 0
+        break
+    if not contacts:
+        print("There are no statistics to print as there are no contacts.")
+    else:
+        print(f"There are {total_contacts} contacts in this Contact Book")
+        print(f"There are {total_favourites} favourite contacts in this Contact Book")
+        print(f"")#Print the 
 
