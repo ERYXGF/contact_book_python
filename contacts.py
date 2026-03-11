@@ -17,3 +17,25 @@ def contact_reusage(contact):
 #Function that adds contact:
 def add_contact(contact):
     return contact_reusage(contact)
+
+#Function that edits contacts:
+def search_contact(contacts,query):
+    query =  str(query).strip.lower()
+    results  = []
+    if not query:
+        return []
+    for contact in contacts:
+        if (
+            query in str(contact.get("name","")).lower()
+            or query in str(contact.get("phone","")).lower()
+            or query in str(contact.get("email","")).lower()
+            or query in str(contact.get("city","")).lower()
+            or query in str(contact.get("category","")).lower()
+            or query in str(contact.get("favourite","")).lower()
+        ):
+            results.append(contact)
+    return results 
+    
+    
+
+    
