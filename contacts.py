@@ -45,14 +45,18 @@ def search_contact(contacts,query):
 def delete_contact(contacts,name_find):
     #Variable defining what the user wants to delete (target):
     target = str(name_find).strip().lower()
+    #Determines if target is an already existing contact:
+    if contact.get("target","") not in contacts:
+        print("Contact cannot be deleted as it doesn't exist. ")
+        return False
     #Loop through the different contacts:
     for index, contact in enumerate(contacts):
-        if str(contact.get("name","")).strip.lower == target:
+        if str(contact.get("name","")).strip().lower() == target:
             contacts.pop(index)
         #Confirms the contact has been deleted:
-        print("The contact {target} has been succesfully deleted.")
-        return True
-    return False
+        print(f"The contact {target} has been succesfully deleted.")
+    return True
+
         
     
 
