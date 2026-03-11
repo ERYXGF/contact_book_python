@@ -9,5 +9,6 @@ contact_input = {
     "email" : input("What is the contact's email ? "),
     "city" : input("From which city is the contact from ?"),
     "category" : input("Please choose a category: "),
-    "favourite" : input("Do you wish to add this contact as a favourite (Y or N) ? ")
+    "favourite" : input("Do you wish to add this contact as a favourite (Y or N) ? "),
+    "birthday" : input("What is the person's birthday ?"),
 }
