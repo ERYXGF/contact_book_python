@@ -59,6 +59,32 @@ def delete_contact(contacts,name_find):
     print("Contact cannot be deleted as it doesn't exist. ")
     return False
 
+#Function that edits a contact:
+def edit_contact1(contacts,identifier,updates):
+    identifier = identifier.strip().lower()
+    #Checks each contact in contacts:
+    for contact in contacts:
+        #Checks if identifier is a correct contact (name):
+        if identifier in contact["name",""]:
+            for key,value in updates:
+                #Validate the keys and values using the validator function:
+                if key == None: #Will modify later on.
+                    return False
+                value = str(value.trim().split())
+                contact.update("identifier":"updates")
+                print("The contact has been succesfully edited. ")
+    #If loop ends with no match:
+    return False ("The contact wasn't found. ")
+
+def edit_contact2(contacts,nale,field,new_value):
+    key = name.lower()
+    if key in contacts:
+        contacts[key].update({field: new_value})
+        print(f"{field} updated for {name}")
+    else:
+        print("Contact not found")
+
+
 
         
     
