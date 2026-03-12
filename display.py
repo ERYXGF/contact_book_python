@@ -30,13 +30,14 @@ def display_contact(contact):
     print(f"City: {contact['city']}")
     print(f"Favourite: {'Yes' if contact['favourite'] else 'No'}")
     print(f"Category: {contact['category']}")
+    print(f"Birthday: {contact['birthday']}")
 
 def display_all_contacts(contacts):
     if not contacts:
         print("There are no contacts yet.")
     else:
         for contact in contacts:
-            print (f"{contact['name']} - {contact['phone']} - {contact['email']} - {contact['city']} - {'Favourite' if contact['favourite'] else 'Not Favourite'} - {contact['category']}")
+            print (f"{contact['name']} - {contact['phone']} - {contact['email']} - {contact['city']} - {'Favourite' if contact['favourite'] else 'Not Favourite'} - {contact['category']} - {contact['birthday']}")
 
 def display_statistics(contacts):
     total_contacts = int(len(contacts))

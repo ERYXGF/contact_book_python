@@ -10,8 +10,8 @@ def contact_reusage(contact):
         "email" : str(contact.get("email","")).strip(),
         "city" : str(contact.get("city","")).strip(),
         "category" : str(contact.get("category","")).strip(),
-        "favourite" : str(contact.get("favourite","")).strip(),
-        "favourite" : str(contact.get("favourite","")).strip()
+        "favourite" : bool(contact.get("favourite","")),
+        "birthday" : str(contact.get("birthday","")).strip()
         #Find a way to implement date
     }
 
@@ -19,7 +19,7 @@ def contact_reusage(contact):
 def add_contact(contact):
     return contact_reusage(contact)
 
-#Function that edits contacts:
+#Function that seraches a particular contact:
 def search_contact(contacts,query):
     query =  str(query).strip().lower()
     results  = []
@@ -29,13 +29,13 @@ def search_contact(contacts,query):
     #Conjures and returns/gives the contact the person searched for:
     for contact in contacts:
         if (
-            query in str(contact.get("name","")).lower()
-            or query in str(contact.get("phone","")).lower()
-            or query in str(contact.get("email","")).lower()
-            or query in str(contact.get("city","")).lower()
-            or query in str(contact.get("category","")).lower()
-            or query in str(contact.get("favourite","")).lower()
-            or query in str(contact.get("favourite","")).lower()
+            query in str(contact.get("name","")).strip().lower()
+            or query in str(contact.get("phone","")).strip().lower()
+            or query in str(contact.get("email","")).strip().lower()
+            or query in str(contact.get("city","")).strip().lower()
+            or query in str(contact.get("category","")).strip().lower()
+            or query in str(contact.get("favourite","")).strip().lower()
+            or query in str(contact.get("birthday","")).strip().lower()
         ):
             results.append(contact)
     #Line that ties everything together and returns the result:
@@ -45,17 +45,18 @@ def search_contact(contacts,query):
 def delete_contact(contacts,name_find):
     #Variable defining what the user wants to delete (target):
     target = str(name_find).strip().lower()
-    #Determines if target is an already existing contact:
-    if contact.get("target","") not in contacts:
-        print("Contact cannot be deleted as it doesn't exist. ")
-        return False
     #Loop through the different contacts:
     for index, contact in enumerate(contacts):
+        #Determines if target is an already existing contact:
         if str(contact.get("name","")).strip().lower() == target:
             contacts.pop(index)
-        #Confirms the contact has been deleted:
-        print(f"The contact {target} has been succesfully deleted.")
-    return True
+            #Confirms the contact has been deleted:
+            print(f"The contact {target} has been succesfully deleted.")
+            return True
+    #Returns False and prints message if there is no cntact to delete:
+    print("Contact cannot be deleted as it doesn't exist. ")
+    return False
+
 
         
     
