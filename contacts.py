@@ -2,6 +2,8 @@
 add a contact, edit a contact, delete a contact, search for a contact, toggle favourite. 
 This is the core business logic of the application."""
 
+#Imports the datetime library to be used in the add_contact function:
+from datetime import date
 #Function that Ill be able to use for add, edit, search and delete contact.
 def contact_reusage(contact):
     return {
@@ -11,8 +13,8 @@ def contact_reusage(contact):
         "city" : str(contact.get("city","")).strip(),
         "category" : str(contact.get("category","")).strip(),
         "favourite" : bool(contact.get("favourite","")),
-        "birthday" : str(contact.get("birthday","")).strip()
-        #Find a way to implement date
+        "birthday" : str(contact.get("birthday","")).strip(),
+        "date_added": date.today().isoformat() #Implements date
     }
 
 #Function that adds contact:
