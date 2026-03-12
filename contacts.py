@@ -76,7 +76,7 @@ def edit_contact1(contacts,identifier,updates):
     #If loop ends with no match:
     return False ("The contact wasn't found. ")
 
-def edit_contact2(contacts,nale,field,new_value):
+def edit_contact2(contacts,name,field,new_value):
     key = name.lower()
     if key in contacts:
         contacts[key].update({field: new_value})
