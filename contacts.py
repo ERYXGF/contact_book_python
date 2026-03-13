@@ -12,9 +12,9 @@ def contact_reusage(contact):
         "email" : str(contact.get("email","")).strip(),
         "city" : str(contact.get("city","")).strip(),
         "category" : str(contact.get("category","")).strip(),
-        "favourite" : bool(contact.get("favourite","")),
+        "favourite": str(contact.get("favourite", "")).strip().lower() in ("y", "yes", "true", "1"),
         "birthday" : str(contact.get("birthday","")).strip(),
-        "date_added": date.today().isoformat() #Implements date
+        "date_added": contact.get("date_added") or date.today().isoformat() #Implements date
     }
 
 #Function that adds contact:
