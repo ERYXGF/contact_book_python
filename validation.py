@@ -11,7 +11,7 @@ If you ever need to change the email validation rule you know exactly which file
 6) Birthday - Must be in the ISO format
 """
 
-#Validates name:
+#Function that validates name:
 def validate_name(name : str,contacts):
     #Normalizes name:
     normal = name.strip()
@@ -32,3 +32,24 @@ def validate_name(name : str,contacts):
             return False
     #Returns True if all needed conditionss are met:
     return True 
+
+#Function that validates phone number:
+def validate_phone(phone : str,contacts):
+    #Normalizes phone:
+    normal = phone.strip()
+    #Takes off non-digits from phone:
+    perfect = "".join(ch for ch in normal if ch.isdigit())
+    #Checks if any character is not a digit space, hyphen or plus:
+    if not all(ch.isdigit() or ch.isspace() or ch in "+-" for ch in normal):
+        return False
+    #Checks if digits <7 or >15 after removing non-digits:
+    if len(perfect) < 7 or len(perfect) > 15:
+        return False
+    #Checks if the digits match an already existing phone number:
+    for contact in contacts:
+        existing = str(contact.get("phone","")).strip()
+        existing_digits = "".join(ch for ch in existing if ch.isdigit())
+        if existing_digits == perfect:
+            return False
+    #Returns True if all needed conditions are met:
+    return True
