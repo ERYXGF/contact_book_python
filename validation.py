@@ -81,8 +81,21 @@ def validate_email(email : str,contacts):
         return False
     #If the email is already saved in another contact:
     for contact in contacts:
-        existing = str(contact.get("email","")).strip()
+        existing = str(contact.get("email","")).strip().lower()
         if existing == email:
             return False
+    #Return True if all needed conditions are met:
+    return True
+
+#Function that validates city:
+def validate_city(city : str):
+    #Normalizes city:
+    city = city.strip()
+    #If city is empty:
+    if not city:
+        return False
+    #If city contains anything else than hyphens, spaces or characters:
+    if not all(ch.isalpha() or ch.isspace() or ch in "-" for ch in city):
+        return False
     #Return True if all needed conditions are met:
     return True
