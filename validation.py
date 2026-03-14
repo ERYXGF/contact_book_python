@@ -5,7 +5,7 @@ If you ever need to change the email validation rule you know exactly which file
 """Validation Rules:
 1) Name — cannot be empty, cannot be only spaces, must contain at least two words (first and last name), must contain only letters and spaces (no numbers or symbols), cannot already exist in the contact book unless the user explicitly confirms overwrite.
 2) Phone number — must contain only digits, spaces, hyphens and the + symbol, must be between 7 and 15 digits long when all non-digit characters are stripped out, must not be identical to a phone number already saved to another contact.
-3) Email — must contain exactly one @ symbol, must have at least one character before the @, must have a dot in the domain section after the @, must not be identical to an email already saved to another contact.
+3) Email — must contain exactly one @ symbol, must have at least one character before the @, must have a dot in the domain section after the @, must not be identical to an email already saved to another contact, must not have any spaces in it.
 4) City — cannot be empty, must contain only letters spaces and hyphens (to allow names like Saint-Étienne).
 5) Category — must be one of the five predefined options, selected by number from a displayed list rather than typed freely. Never accept free text for category.
 6) Birthday - Must be in the ISO format
@@ -52,4 +52,37 @@ def validate_phone(phone : str,contacts):
         if existing_digits == perfect:
             return False
     #Returns True if all needed conditions are met:
+    return True
+
+#Function that validates email:
+def validate_email(email : str,contacts):
+    #Normalizes email:
+    email = email.strip().lower()
+    #If there's a space in the email:
+    if " " in email:
+        return False
+    #If email is empty:
+    if not email:
+        return False
+    #If there's no at symbol in the email:
+    if email.count("@") != 1:
+        return False
+    #If there's nothing before the at symbol:
+    if email[0] == "@":
+        return False
+    #Establishes the domain
+    email_half = email.split("@")
+    domain = email_half[1]
+    #If the domain name doesnt have a dot:
+    if "." not in domain:
+        return False
+    #If the domain name starts or ends with a dot:
+    if domain[0] == "." or domain[-1] == ".":
+        return False
+    #If the email is already saved in another contact:
+    for contact in contacts:
+        existing = str(contact.get("email","")).strip()
+        if existing == email:
+            return False
+    #Return True if all needed conditions are met:
     return True
