@@ -7,7 +7,7 @@ If you ever need to change the email validation rule you know exactly which file
 2) Phone number — must contain only digits, spaces, hyphens and the + symbol, must be between 7 and 15 digits long when all non-digit characters are stripped out, must not be identical to a phone number already saved to another contact.
 3) Email — must contain exactly one @ symbol, must have at least one character before the @, must have a dot in the domain section after the @, must not be identical to an email already saved to another contact, must not have any spaces in it.
 4) City — cannot be empty, must contain only letters spaces and hyphens (to allow names like Saint-Étienne).
-5) Category — must be one of the five predefined options, selected by number from a displayed list rather than typed freely. Never accept free text for category.
+5) Category — must be one of the five predefined options (family, friend, work, school, other), selected by number from a displayed list rather than typed freely. Never accept free text for category.
 6) Birthday - Must be in the ISO format
 """
 
@@ -98,4 +98,15 @@ def validate_city(city : str):
     if not all(ch.isalpha() or ch.isspace() or ch in "-" for ch in city):
         return False
     #Return True if all needed conditions are met:
+    return True
+
+#Function that validates category (expects a numeric choice):
+def validate_category(category_choice : str):
+    categories = ("Family","Friend","Work","School","Other")
+    choice = str(category_choice).strip()
+    if not choice.isdigit():
+        return False
+    index = int(choice)
+    if index < 1 or index > len(categories):
+        return False
     return True
