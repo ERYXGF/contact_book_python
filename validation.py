@@ -102,11 +102,41 @@ def validate_city(city : str):
 
 #Function that validates category (expects a numeric choice):
 def validate_category(category_choice : str):
+    #Defines what categories exist:
     categories = ("Family","Friend","Work","School","Other")
+    #Normalizes the users category choice:
     choice = str(category_choice).strip()
+    #If cboice isn't a number:
     if not choice.isdigit():
         return False
     index = int(choice)
+    #If choice is outside of the given categories numerical values:
     if index < 1 or index > len(categories):
         return False
+    #Return True if all needed conditions are met:
+    return True
+
+#Imports datetime so that birthday can be properly validated:
+from datetime import datetime
+
+#Function that validates birthday:
+def validate_birthday(birthday : str):
+    #Normalizes birthday
+    birthday = str(birthday).strip()
+    #Check if birthday is empty:
+    if not birthday:
+        return False
+    #Check if birthday is in ISO format:
+    if len(birthday) != 10 or birthday[4] != "-" or birthday[7] != "-":
+        return False
+    #Check if everythong in birthday is a number (or hyphen):
+    a,b,c = birthday.split("-") #Splits birthday in 3 parts
+    if not (a.isdigit() and b.isdigit() and c.isdigit()):
+        return False
+    #Checks if each digit is in the correct date range (days, months, years):
+    try:
+        datetime(int(a), int(b), int(c))
+    except ValueError:
+        return False
+    #Return True if all needed conditions are met:
     return True
