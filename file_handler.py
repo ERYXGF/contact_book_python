@@ -9,4 +9,17 @@ import json
 #Function that saves contacts to a json file:
 def save(contacts, path = "contacts.json"):
     with open(path, "w", encoding  = "utf-8") as f:
-        json.dump(contacts, f, ensure_ascii = False, indent = 4)
+        json.dump(contacts, f, ensure_ascii = False, indent = 4) #Saves the data to the file
+
+#Function that loads contacts from json file:
+def load(path = "contacts.json"):
+    #Try to see if file already exists:
+    try:
+        with open(path, "r", encoding = "utf-8") as f:
+            return json.load(f) #Loads already existing data from the file
+    #If file doesnt exist
+    except FileNotFoundError:
+        return []
+    #If another error shows up:
+    except json.JSONDecodeError:
+        return []
