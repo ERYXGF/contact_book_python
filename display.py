@@ -18,10 +18,11 @@ def display_menu():
     while True:
         try:
             decision = int(input("Enter your choice (0-9): "))
-            break
+            if 0 <= decision <=9:
+                return decision
+            print("Please enter a number between 0 and 9: ")
         except ValueError:
             print("Invalid choice. Please enter a number (0-9).")
-    return decision
 
 #Function that displays a particular contact's information:
 def display_contact(contact):
@@ -62,20 +63,20 @@ def display_statistics(contacts):
     categories = {}
     for contact in contacts:
         cat = contact["category"]
-        categories[cat] = categories.get(categories.get(category, 0)) + 1
+        categories[cat] = categories.get(cat, 0) + 1
     
     #Most recent contact:
-    recentest = max(contacts, key=lambda contact: contact["created"])
+    recentest = max(contacts, key=lambda contact: contact["date_added"])
     
     #Oldest contact:
-    oldest = min(contacts, key=lambda contact: contact["created"])
+    oldest = min(contacts, key=lambda contact: contact["date_added"])
     
     #Contacts added this month:
     now = datetime.now()
     monthly_contacts = 0
 
     for contact in contacts:
-        creation = datetime.strptime(contact["created"], "%Y-%m-%d")
+        creation = datetime.strptime(contact["date_added"], "%Y-%m-%d")
         if creation.year == now.year and creation.month == now.month:
             monthly_contacts += 1
 
@@ -89,9 +90,9 @@ def display_statistics(contacts):
     for category, count in categories.items(): #Assigns number of contacts in given category to that category.
         print(f"{category}: {count}") #Contacts per category
 
-    print(f"The most recently added contact was {recentest}.") #Most recent contact
+    print(f"The most recently added contact was {recentest['name']}.") #Most recent contact
 
-    print(f"The oldest added contact in the book is {oldest}. ") #Oldest contact
+    print(f"The oldest added contact in the book is {oldest['name']}.") #Oldest contact
 
     print(f"This month, {monthly_contacts} contacts have been added." ) #Monthly contacts
 
