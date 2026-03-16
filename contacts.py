@@ -70,8 +70,14 @@ def edit_contact(contacts, identifier, updates):
             for key, value in updates.items():
                 if key not in contact:
                     return False
+                if key == "date_added":
+                    return False
                 #Updates the contact's key:
-                contact[key] = value if key == "favourite" else str(value).strip()
+                contact[key] = (
+                    str(value).strip().lower() in ("y","Y","yes","true","1")
+                    if key == "favourite"
+                    else str(value).strip()
+                )
             print("The contact has been succesfully edited.")
             return True
     #If one of the conditions isn't met:
