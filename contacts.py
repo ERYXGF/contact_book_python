@@ -71,7 +71,7 @@ def edit_contact(contacts, identifier, updates):
                 if key not in contact:
                     return False
                 #Updates the contact's key:
-                contact[key] = str(value).strip()
+                contact[key] = value if key == "favourite" else str(value).strip()
             print("The contact has been succesfully edited.")
             return True
     #If one of the conditions isn't met:
